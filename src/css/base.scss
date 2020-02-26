@@ -1,6 +1,36 @@
 /* This is an example of using Sass, otherwise plain CSS works too*/
-$primary-background: deepskyblue;
+$primary-color: deepskyblue;
+$secondary-color: white;
+
+nav {
+  background-color: $secondary-color;
+  color: $primary-color;
+  font-size: 2em;
+  font-family: Arial;
+  display: flex;
+}
 
 body {
-  background-color: $primary-background;
+  background-color: $primary-color;
+}
+
+h1 {
+  margin: 3%;
+  align-content: space-between;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid $secondary-color;
+  width: 200px;
+  font-family: Arial;
+  color: $secondary-color;
+  padding: 2%;
+  margin: 2%;
+}
+
+.login-input {
+  margin: 2% 0;
+
 }
