@@ -1,8 +1,9 @@
-import index from '../src/index.js';
+// import index from '../src/index.js';
 const chai = require('chai');
-const spies = require('chai-spies');
+// const spies = require('chai-spies');
 const expect = chai.expect;
-chai.use(spies);
+// chai.use(spies);
+let window = {}
 
 // describe('checkLoginCredentials', function() {
 //
