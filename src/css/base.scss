@@ -8,6 +8,7 @@ nav {
   font-size: 2em;
   font-family: Arial;
   display: flex;
+  border-radius: 5px;
 }
 
 body {
@@ -16,7 +17,7 @@ body {
 
 h1 {
   margin: 3%;
-  align-content: space-between;
+  // align-content: space-between;
 }
 
 .nav-icon {
