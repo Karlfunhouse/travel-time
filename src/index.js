@@ -6,10 +6,15 @@ import $ from 'jquery';
 
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
-import domUpdates from './domUpdates.js'
+import domUpdates from './domUpdates'
+import dataParser from './dataParser'
+import Traveler from './traveler'
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/travel-icon.png'
+
+let traveler;
+
 
 export const isTraveler = (name) => {
   if(!name.includes('traveler')) {
@@ -36,7 +41,20 @@ export const checkLoginCredentials = (event) => {
     return 'invalid password'
   } else if (isTraveler(userName) && password === 'travel2020') {//valid
     console.log('verified user');
-    
+    // debugger
+    Promise.resolve(dataParser.fetchTravelerById(id))
+      .then((travelerData) => traveler = new Traveler(travelerData))
+      // debugger
+      .then(() => domUpdates.displayTravelerDashboard(traveler))
+    Promise.resolve(dataParser.fetchDestinations())
+      .then((destinationData) => destinations = new Destinations(destinationData))
+
+
+    // console.log(travelerData);
+    // traveler = new Traveler(travelerData)
+
+
+
   } else if (isTraveler(userName) && password !== 'travel2020'){//invalid
     window.alert('☠️Invalid Password☠️')
     return 'invalid password'
@@ -49,12 +67,12 @@ export const checkLoginCredentials = (event) => {
     window.alert('☠️Invalid Username☠️')
     return 'invalid user'
   }
-  if(password !== 'travel2020') {
-    window.alert('☠️Invalid Password☠️')
-    return 'invalid password'
-  } else {
-    console.log('Login Successful');
-  }
+  // if(password !== 'travel2020') {
+  //   window.alert('☠️Invalid Password☠️')
+  //   return 'invalid password'
+  // } else {
+  //   console.log('Login Successful');
+  // }
 }
 
 // const userData = fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/1911/travelers/travelers')
