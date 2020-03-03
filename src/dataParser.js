@@ -1,6 +1,6 @@
 const dataParser = {
   fetchAllTravelers: () => {
-    fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/1911/travelers/travelers')
+    return fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/1911/travelers/travelers')
       .then(response => response.json())
       .then(data => data)
       .catch(error => console.log(error))
