@@ -9,6 +9,7 @@ import './css/base.scss';
 import domUpdates from './domUpdates'
 import dataParser from './dataParser'
 import Traveler from './traveler'
+import Destinations from './destination'
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/travel-icon.png'
@@ -48,12 +49,7 @@ export const checkLoginCredentials = (event) => {
       .then(() => domUpdates.displayTravelerDashboard(traveler))
     Promise.resolve(dataParser.fetchDestinations())
       .then((destinationData) => destinations = new Destinations(destinationData))
-
-
-    // console.log(travelerData);
-    // traveler = new Traveler(travelerData)
-
-
+      console.log(destinationData)
 
   } else if (isTraveler(userName) && password !== 'travel2020'){//invalid
     window.alert('☠️Invalid Password☠️')
@@ -90,7 +86,15 @@ export const checkLoginCredentials = (event) => {
 //   .then(data => data.destinations)
 //   .catch(error => console.log('destinations error'))
 //
-// Promise.all([userData, tripsData, ])
+// Promise.all([userData, tripsData, destinationsData])
+  .then(data => {
+    userData = data[0];
+    tripsData = data[1];
+    destinationsData = data[2];
+  })
+  .then(() => {
+    
+  })
 
 
 
