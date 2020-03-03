@@ -1,13 +1,16 @@
 import dataParser from './dataParser'
 
-class Trips {
+class Trip {
   constructor(travelerData) {
     console.log(travelerData);
     this.id = travelerData.id;
-    this.name = travelerData.name;
-    this.travelerType = travelerData.travelerType;
-    this.username = "traveler" + this.id;
-    this.password = "travel2020";
+    this.userID =
+    this.destinationID =
+    this.travelers =
+    this.date =
+    this.duration =
+    this.status =
+    this.suggestedActivities = []
   }
 
-  export default Trips;
+  export default Trip;
