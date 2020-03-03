@@ -61,8 +61,18 @@ h5 {
 }
 
 .trip-card {
+
   color: $secondary-color;
   border: 2px solid $secondary-color;
+  margin: 1%;
   padding: 1%;
-  width: 100%;
+  width: 200px;
+}
+
+.approved {
+  border: 3px solid green;
+}
+
+.pending {
+  border: 3px dotted yellow;
 }
