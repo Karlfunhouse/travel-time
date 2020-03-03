@@ -5,6 +5,7 @@ import $ from 'jquery';
 const domUpdates = {
   showUsers: async () => {
     console.log(await dataParser.fetchAllTravelers());
+
   },
 
   displayTravelerDashboard: (traveler) => {
@@ -24,6 +25,12 @@ const domUpdates = {
     $('.total-spent').append(`You've spent $${traveler.calculateTotalSpent()} on travel this year.`)
 
     // $('logout-button').show()
+  },
+
+  displayAgentDashboard: () => {
+    $('#login-form').hide()
+    $('.welcome-traveler').append(`Welcome Travel Agent`)
+    $('.total-spent').append(`You've made $${agent.calculateTotalEarned()} this year.`)
   }
 }
 
