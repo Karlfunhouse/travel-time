@@ -2,7 +2,7 @@ import dataParser from './dataParser'
 
 class Destinations {
   constructor(destinationData) {
-    console.log(destinationData);
+    // console.log(destinatio
     this.id = destinationData.id;
     this.destination = destinationData.destination;
     this.estimatedLodgingCostPerDay = destinationData.travelerType;
