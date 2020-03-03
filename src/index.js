@@ -61,6 +61,7 @@ export const checkLoginCredentials = (event) => {
         console.log(foundUserData);
         console.log(foundTripsData);
         console.log(foundDestinationsData);
+        traveler.getTripsById(foundTripsData.trips)
       })
       .then(() => traveler.getTripsById(foundTripsData.trips))
       .then(() => {traveler.calculateTotalSpent()})
