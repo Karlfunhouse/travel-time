@@ -26,7 +26,7 @@ const domUpdates = {
   )
   .then()
     await ($('.welcome-traveler').append(`Welcome ${traveler.name}`))
-    destinationIds.reduce((totalSpent, tripCost))
+    // destinationIds.reduce((totalSpent, tripCost))
     await($('.total-spent').append(`Total Spent this Year:$`))
 
     // $('logout-button').show()
