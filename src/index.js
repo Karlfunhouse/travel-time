@@ -43,13 +43,41 @@ export const checkLoginCredentials = (event) => {
   } else if (isTraveler(userName) && password === 'travel2020') {//valid
     console.log('verified user');
     // debugger
-    Promise.resolve(dataParser.fetchTravelerById(id))
-      .then((travelerData) => traveler = new Traveler(travelerData))
-      // debugger
-      .then(() => domUpdates.displayTravelerDashboard(traveler))
-    Promise.resolve(dataParser.fetchDestinations())
-      .then((destinationData) => destinations = new Destinations(destinationData))
-      console.log(destinationData)
+
+    const userData = dataParser.fetchTravelerById(id)
+    const tripsData = dataParser.fetchTripsData()
+    const destinationsData = dataParser.fetchDestinations()
+    let foundUserData = {}
+    let foundTripsData = {}
+    let foundDestinationsData = {}
+    Promise.all([userData, tripsData, destinationsData])
+      .then(data => {
+        foundUserData = data[0];
+        foundTripsData = data[1];
+        foundDestinationsData = data[2];
+      })
+      .then(() => {
+        traveler = new Traveler(foundUserData, foundTripsData, foundDestinationsData)
+        console.log(foundUserData);
+        console.log(foundTripsData);
+        console.log(foundDestinationsData);
+      })
+      .then(() => traveler.getTripsById(foundTripsData.trips))
+      .then(() => {traveler.calculateTotalSpent()})
+      .then(() => {domUpdates.displayTravelerDashboard(traveler)})
+
+
+
+    //
+    // Promise.all([dataParser.fetchTravelerById(id), dataParser.fet)
+    //   .then((travelerData) => {
+    //
+    //     traveler = new Traveler(travelerData)
+    //     console.log(travelerData)
+    //   })
+    //   // debugger
+    //   .then(() => domUpdates.displayTravelerDashboard(traveler))
+    //   .then(() => traveler.calculateTotalSpent())
 
   } else if (isTraveler(userName) && password !== 'travel2020'){//invalid
     window.alert('☠️Invalid Password☠️')
@@ -71,30 +99,7 @@ export const checkLoginCredentials = (event) => {
   // }
 }
 
-// const userData = fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/1911/travelers/travelers')
-//   .then(response => response.json())
-//   .then(data => data.travelers)
-//   .catch(error => console.log('travelers error'))
-//
-// const tripsData = fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/1911/trips/trips')
-//   .then(response => response.json())
-//   .then(data => data.trips)
-//   .catch(error => console.log('trips error'))
-//
-// const destinationsData = fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/1911/destinations/destinations')
-//   .then(response => response.json())
-//   .then(data => data.destinations)
-//   .catch(error => console.log('destinations error'))
-//
-// Promise.all([userData, tripsData, destinationsData])
-  .then(data => {
-    userData = data[0];
-    tripsData = data[1];
-    destinationsData = data[2];
-  })
-  .then(() => {
-    
-  })
+
 
 
 
