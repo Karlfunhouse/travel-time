@@ -10,8 +10,8 @@ const domUpdates = {
   displayTravelerDashboard: (traveler) => {
     $('#login-form').hide()
     traveler.trips.forEach(trip => {
-     $('body').append(`<div class='trip-card'>
-      <h5>Trip ID:${trip.id}</h5>
+     $('body').append(`<div class='trip-card ${trip.status}'>
+      <h5>Location:${trip.id}</h5>
       <h5>Destination ID:${trip.destinationID}</h5>
       <h5># of Travelers: ${trip.travelers}</h5>
       <h5>Trip Start Date:${trip.date}</h5>
