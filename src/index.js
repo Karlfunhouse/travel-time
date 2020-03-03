@@ -6,10 +6,18 @@ import $ from 'jquery';
 
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
-import domUpdates from './domUpdates.js'
+import domUpdates from './domUpdates'
+import dataParser from './dataParser'
+import Traveler from './traveler'
+import Destinations from './destination'
+import Agent from './agent'
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/travel-icon.png'
+
+let traveler;
+let agent;
+
 
 export const isTraveler = (name) => {
   if(!name.includes('traveler')) {
@@ -28,15 +36,71 @@ export const checkLoginCredentials = (event) => {
   let password = event.target[1].value
   let id = parseInt(userName.slice(8))
   if (userName === 'agency' && password === 'travel2020') { //valid agent
-    console.log('yer an agent');
-    domUpdates.showUsers();
-    //load agent dashboard
+    const userData = dataParser.fetchAllTravelers()
+    const tripsData = dataParser.fetchTripsData()
+    const destinationsData = dataParser.fetchDestinations()
+    let foundUserData = {}
+    let foundTripsData = {}
+    let foundDestinationsData = {}
+    Promise.all([userData, tripsData, destinationsData])
+      .then(data => {
+        foundUserData = data[0];
+        foundTripsData = data[1];
+        foundDestinationsData = data[2];
+      })
+      .then(() => {
+        agent = new Agent(foundUserData, foundTripsData, foundDestinationsData)
+        console.log(foundUserData);
+        console.log(foundTripsData);
+        console.log(foundDestinationsData);
+      })
+      domUpdates.displayAgentDashboard()
+
+
+
   } else if (userName === 'agency' && password !== 'travel2020') {//invalid
     window.alert('☠️Invalid Password☠️')
     return 'invalid password'
   } else if (isTraveler(userName) && password === 'travel2020') {//valid
     console.log('verified user');
-    
+    // debugger
+
+    const userData = dataParser.fetchTravelerById(id)
+    const tripsData = dataParser.fetchTripsData()
+    const destinationsData = dataParser.fetchDestinations()
+    let foundUserData = {}
+    let foundTripsData = {}
+    let foundDestinationsData = {}
+    Promise.all([userData, tripsData, destinationsData])
+      .then(data => {
+        foundUserData = data[0];
+        foundTripsData = data[1];
+        foundDestinationsData = data[2];
+      })
+      .then(() => {
+        traveler = new Traveler(foundUserData, foundTripsData, foundDestinationsData)
+        console.log(foundUserData);
+        console.log(foundTripsData);
+        console.log(foundDestinationsData);
+        traveler.getTripsById(foundTripsData.trips)
+      })
+      .then(() => traveler.getTripsById(foundTripsData.trips))
+      .then(() => {traveler.calculateTotalSpent()})
+      .then(() => {domUpdates.displayTravelerDashboard(traveler)})
+
+
+
+    //
+    // Promise.all([dataParser.fetchTravelerById(id), dataParser.fet)
+    //   .then((travelerData) => {
+    //
+    //     traveler = new Traveler(travelerData)
+    //     console.log(travelerData)
+    //   })
+    //   // debugger
+    //   .then(() => domUpdates.displayTravelerDashboard(traveler))
+    //   .then(() => traveler.calculateTotalSpent())
+
   } else if (isTraveler(userName) && password !== 'travel2020'){//invalid
     window.alert('☠️Invalid Password☠️')
     return 'invalid password'
@@ -49,30 +113,15 @@ export const checkLoginCredentials = (event) => {
     window.alert('☠️Invalid Username☠️')
     return 'invalid user'
   }
-  if(password !== 'travel2020') {
-    window.alert('☠️Invalid Password☠️')
-    return 'invalid password'
-  } else {
-    console.log('Login Successful');
-  }
+  // if(password !== 'travel2020') {
+  //   window.alert('☠️Invalid Password☠️')
+  //   return 'invalid password'
+  // } else {
+  //   console.log('Login Successful');
+  // }
 }
 
-// const userData = fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/1911/travelers/travelers')
-//   .then(response => response.json())
-//   .then(data => data.travelers)
-//   .catch(error => console.log('travelers error'))
-//
-// const tripsData = fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/1911/trips/trips')
-//   .then(response => response.json())
-//   .then(data => data.trips)
-//   .catch(error => console.log('trips error'))
-//
-// const destinationsData = fetch('https://fe-apps.herokuapp.com/api/v1/travel-tracker/1911/destinations/destinations')
-//   .then(response => response.json())
-//   .then(data => data.destinations)
-//   .catch(error => console.log('destinations error'))
-//
-// Promise.all([userData, tripsData, ])
+
 
 
 
