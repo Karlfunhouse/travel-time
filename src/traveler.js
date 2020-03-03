@@ -19,6 +19,10 @@ class Traveler {
     return tripsData.filter(trip => trip.userID === this.id)
 }
 
+//   getLocationName() {
+//      return this.destinations.find(dest => trip.destinationID === dest.id)
+// }
+
  calculateTotalSpent()  {
    let totalCost = 0;
     this.trips.forEach(trip => {
