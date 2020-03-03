@@ -10,11 +10,13 @@ import domUpdates from './domUpdates'
 import dataParser from './dataParser'
 import Traveler from './traveler'
 import Destinations from './destination'
+import Agent from './agent'
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/travel-icon.png'
 
 let traveler;
+let agent;
 
 
 export const isTraveler = (name) => {
@@ -34,9 +36,28 @@ export const checkLoginCredentials = (event) => {
   let password = event.target[1].value
   let id = parseInt(userName.slice(8))
   if (userName === 'agency' && password === 'travel2020') { //valid agent
-    console.log('yer an agent');
-    domUpdates.showUsers();
-    //load agent dashboard
+    const userData = dataParser.fetchAllTravelers()
+    const tripsData = dataParser.fetchTripsData()
+    const destinationsData = dataParser.fetchDestinations()
+    let foundUserData = {}
+    let foundTripsData = {}
+    let foundDestinationsData = {}
+    Promise.all([userData, tripsData, destinationsData])
+      .then(data => {
+        foundUserData = data[0];
+        foundTripsData = data[1];
+        foundDestinationsData = data[2];
+      })
+      .then(() => {
+        agent = new Agent(foundUserData, foundTripsData, foundDestinationsData)
+        console.log(foundUserData);
+        console.log(foundTripsData);
+        console.log(foundDestinationsData);
+      })
+      domUpdates.displayAgentDashboard()
+
+
+
   } else if (userName === 'agency' && password !== 'travel2020') {//invalid
     window.alert('☠️Invalid Password☠️')
     return 'invalid password'
