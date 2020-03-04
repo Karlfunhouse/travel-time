@@ -12,9 +12,9 @@ Travel Time is a hub to find somewhere new and book a trip to experience it firs
   * create a testing suite to ensure functionality.
 
 ### Screenshots
-![Load Page]('https://github.com/Karlfunhouse/travel-time/blob/master/load-page.png?raw=true')
-![User Login]('https://github.com/Karlfunhouse/travel-time/blob/master/traveler-login.png?raw=true')
-![Agent Login]('https://github.com/Karlfunhouse/travel-time/blob/master/agent-login.png?raw=true')
+![Load Page](https://github.com/Karlfunhouse/travel-time/blob/master/load-page.png?raw=true)
+![User Login](https://github.com/Karlfunhouse/travel-time/blob/master/traveler-login.png?raw=true)
+![Agent Login](https://github.com/Karlfunhouse/travel-time/blob/master/agent-login.png?raw=true)
 
 ### Technologies
 * **The fetch API** to get data from an outside database.
