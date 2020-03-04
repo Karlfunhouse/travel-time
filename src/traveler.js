@@ -19,15 +19,11 @@ class Traveler {
     return tripsData.filter(trip => trip.userID === this.id)
 }
 
-//   getLocationName() {
-//      return this.destinations.find(dest => trip.destinationID === dest.id)
-// }
-
  calculateTotalSpent()  {
    let totalCost = 0;
     this.trips.forEach(trip => {
      let destination = this.destinations.find(dest => trip.destinationID === dest.id)
-     let travelerCost = (destination.estimatedLodgingCostPerDay * trip.duration ) + destination.estimatedFlightCostPerPerson
+     let travelerCost = (destination.estimatedLodgingCostPerDay * trip.duration) + destination.estimatedFlightCostPerPerson
      let tripCost = travelerCost * trip.travelers
      totalCost += tripCost + (tripCost * .1)
    })
@@ -35,9 +31,9 @@ class Traveler {
    return totalCost
 }
 
-bookTrip() {
+  bookTrip() {
 
-}
+  }
 }
 
 export default Traveler;
