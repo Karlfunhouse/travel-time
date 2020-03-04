@@ -27,6 +27,22 @@ const dataParser = {
       .catch(error => console.log(error))
   },
 
+  // postDestination: () => {
+  //   let options = {
+  //     method: 'POST',
+  //     body: {
+  //       {id: 234,
+  //       destination: "Over The Rainbow",
+  //       estimatedLodgingCostPerDay: 33.33,
+  //       estimatedFlightCostPerPerson: 11.11,
+  //       image: "https://previews.123rf.com/images/kristynavagnerova/kristynavagnerova1901/kristynavagnerova190100372/121528845-rainbow-vector-illustration-with-somewhere-over-the-rainbow-colorful-rainbow-with-white-cloud-on-blu.jpg",
+  //       alt: "over the rainbow"
+  //       }
+  //     }
+  //   }
+  //   return fetch(`https://fe-apps.herokuapp.com/api/v1/travel-tracker/1911/destinations/destinations`, options)
+  // }
+
 
 
 }
