@@ -1,6 +1,6 @@
-#Travel Time
+# Travel Time
 
-###Description
+### Description
 
 Travel Time is a hub to find somewhere new and book a trip to experience it first hand.  A traveler can log in to see all of their past, present & upcoming trips. They can also see how much they've spent on travel this year!
 
