@@ -53,8 +53,8 @@ export const checkLoginCredentials = (event) => {
         console.log(foundUserData);
         console.log(foundTripsData);
         console.log(foundDestinationsData);
+        domUpdates.displayAgentDashboard(agent)
       })
-      domUpdates.displayAgentDashboard()
 
 
 
