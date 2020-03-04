@@ -1,5 +1,6 @@
 import dataParser from './dataParser.js';
 import Traveler from './traveler'
+import Agent from './agent'
 import $ from 'jquery';
 
 const domUpdates = {
@@ -27,9 +28,9 @@ const domUpdates = {
     // $('logout-button').show()
   },
 
-  displayAgentDashboard: () => {
+  displayAgentDashboard: (agent) => {
     $('#login-form').hide()
-    $('.welcome-traveler').append(`Welcome Travel Agent`)
+    $('.welcome-traveler').append(`Welcome Agent.`)
     $('.total-spent').append(`You've made $${agent.calculateTotalEarned()} this year.`)
   }
 }
